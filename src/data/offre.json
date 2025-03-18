@@ -1,0 +1,70 @@
+{
+  "offers": [
+    {
+      "id": "1",
+      "title": "Apprentissage CFC Informatique",
+      "employer": "Retraites Populaires",
+      "location": "Lausanne, VD",
+      "type": "Alternance",
+      "salary": "CHF 1,200/mois",
+      "startDate": "01.08.2025",
+      "imgUrl": "https://cdn-icons-png.flaticon.com/512/1794/1794733.png",
+      "description": "Rejoins notre équipe IT pour développer des outils modernes et apprendre les bases du code !",
+      "situations": [
+        {
+          "id": "S1742308369615",
+          "title": "SItuation 1",
+          "statement": "enoncé 1",
+          "choices": [
+            {
+              "text": "",
+              "quality": ""
+            }
+          ],
+          "nextSituationId": "S1742308407844"
+        },
+        {
+          "id": "S1742308407844",
+          "title": "Situation 2",
+          "statement": "enoncé 2",
+          "choices": [],
+          "nextSituationId": null
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Stage Assistant Administratif",
+      "employer": "Retraites Populaires",
+      "location": "Genève, GE",
+      "type": "Stage",
+      "salary": "CHF 800/mois",
+      "startDate": "01.09.2025",
+      "imgUrl": "https://cdn-icons-png.flaticon.com/512/4133/4133322.png",
+      "description": "Soutien administratif avec des tâches variées dans un cadre dynamique.",
+      "situation": []
+    },
+    {
+      "id": "3",
+      "title": "Apprentissage Employé de Commerce",
+      "employer": "Retraites Populaires",
+      "location": "Neuchâtel, NE",
+      "type": "Alternance",
+      "salary": "CHF 1,000/mois",
+      "startDate": "01.08.2025",
+      "imgUrl": "https://cdn-icons-png.flaticon.com/512/1794/1794733.png",
+      "description": "Découvre le monde de la gestion et de la clientèle dans une grande entreprise suisse.",
+      "situation": []
+    },
+    {
+      "id": "b5d8",
+      "title": "Offre",
+      "location": "Belfort",
+      "type": "Alternance",
+      "salary": "1200",
+      "startDate": "janvier",
+      "description": "test\n",
+      "situation": []
+    }
+  ]
+}
