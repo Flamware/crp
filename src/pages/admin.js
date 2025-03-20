@@ -4,8 +4,9 @@ import OfferModal from "../component/admin/offerModal";
 import OfferList from "../component/admin/offerList";
 import QuestionForm from "../component/admin/questionForm";
 import EditOfferModal from "../component/admin/editOfferModal";
+import ResultModal from "../component/admin/resultModal";
 
-const API_URL = "http://localhost:5000/offers";
+const API_URL = "http://10.187.1.40:5000/offers";
 
 const Admin = () => {
     const [jobOffers, setJobOffers] = useState([]);
@@ -13,6 +14,8 @@ const Admin = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isQuestionFormOpen, setIsQuestionFormOpen] = useState(false);
     const [isEditModalOfferOpen, setIsEditModalOfferOpen] = useState(false);
+    const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+
     const openModal = (offer = {}) => {
         setSelectedOffer(offer);
         setIsModalOpen(true);
@@ -40,6 +43,11 @@ const Admin = () => {
         setIsEditModalOfferOpen(false);
         setSelectedOffer(null);
     }
+    const handleShowResultModal = (offer) => {
+        setSelectedOffer(offer);
+        setIsResultModalOpen(true);
+    };
+
     // Fetch Offers from JSON Server
     useEffect(() => {
         axios
@@ -127,9 +135,9 @@ const Admin = () => {
     };
 
     return (
-        <div className="admin-page min-h-screen">
+        <div className="admin-page  min-h-screen">
             <div className="admin-page min-h-screen p-4">
-                <div className="flex flex-col p-2 w-full h-full max-w-4xl mx-auto bg-white shadow-lg rounded-2xl">
+                <div className="flex flex-col bg-secondary p-2 w-full h-full max-w-4xl mx-auto bg-white shadow-lg rounded-2xl">
                     <div className="flex flex-row justify-between items-center">
                         <h2 className="text-2xl font-bold text-gray-800 p-2">Offres Existantes</h2>
                         <button
@@ -143,6 +151,7 @@ const Admin = () => {
                         offers={jobOffers}
                         onEdit={onEditClick}
                         onDelete={deleteOffer}
+                        onCandidaturesShow={handleShowResultModal}
                     />
                     {isModalOpen && (
                         <OfferModal
@@ -164,7 +173,12 @@ const Admin = () => {
                             onClose={closeEditModal}
                         />
                     )}
-
+                    {isResultModalOpen && (
+                        <ResultModal
+                            offer={selectedOffer}
+                            onClose={() => setIsResultModalOpen(false)}
+                        />
+                    )}
                 </div>
             </div>
         </div>

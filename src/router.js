@@ -1,17 +1,76 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './App';
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom';
+import { useState } from 'react';
 import Account from './pages/account';
-import Header from "./component/header";
 import Admin from './pages/admin';
+import Offer from './pages/offer';
+import Dashboard from './pages/dashboard';
+import Header from './component/header';
+
+const Layout = ({ user, onUserSelect, onLogout }) => (
+    <div>
+        <Header user={user} onUserSelect={onUserSelect} onLogout={onLogout} />
+        <main>
+            <Outlet />
+        </main>
+    </div>
+);
+
 const AppRouter = () => {
+    const [selectedUser, setSelectedUser] = useState(() => {
+        const storedUser = localStorage.getItem('selectedUser');
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+
+    const handleUserSelect = (user) => {
+        setSelectedUser(user);
+        localStorage.setItem('selectedUser', JSON.stringify(user));
+    };
+
+    const handleLogout = () => {
+        setSelectedUser(null);
+        localStorage.removeItem('selectedUser');
+    };
+
     return (
         <BrowserRouter>
-            <Header/>
             <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/account" element={<Account />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="Dashboard" element={<App />} />&
+                <Route
+                    element={
+                        <Layout
+                            user={selectedUser}
+                            onUserSelect={handleUserSelect}
+                            onLogout={handleLogout}
+                        />
+                    }
+                >
+                    {/* Redirect root to dashboard or account if user is selected */}
+                    <Route
+                        path="/"
+                        element={<Navigate to={selectedUser ? "/dashboard" : "/account"} />}
+                    />
+
+                    <Route
+                        path="/account"
+                        element={<Account selectedUser={selectedUser} onLogout={handleLogout} />}
+                    />
+                    <Route
+                        path="/admin"
+                        element={<Admin selectedUser={selectedUser} />}
+                    />
+                    <Route
+                        path="/dashboard"
+                        element={<Dashboard selectedUser={selectedUser} />}
+                    />
+                    <Route
+                        path="/offer/:id"
+                        element={<Offer selectedUser={selectedUser} />}
+                    />
+                    {/* Catch all - Redirect to dashboard */}
+                    <Route
+                        path="*"
+                        element={<Navigate to="/dashboard" />}
+                    />
+                </Route>
             </Routes>
         </BrowserRouter>
     );

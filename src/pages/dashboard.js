@@ -3,7 +3,7 @@ import Header from '../component/header';
 import axios from "axios";
 const Dashboard = () => {
     const [jobOffers, setJobOffers] = useState([]);
-    const API_URL = "http://localhost:5000/offers";
+    const API_URL = "http://10.187.1.40:5000/offers";
 
     useEffect(() => {
         axios.get(API_URL)
@@ -68,7 +68,7 @@ const Dashboard = () => {
                                         <span className="font-semibold text-gray-700">Début:</span> {offer.startDate}
                                     </p>
                                     <a
-                                        href={`/apply/${offer.id}`}
+                                        href={`/offer/${offer.id}`}
                                         className="bg-blue-600 text-white py-2 px-5 rounded-full hover:bg-blue-700 transition duration-200 text-sm font-semibold"
                                     >
                                         Postuler
