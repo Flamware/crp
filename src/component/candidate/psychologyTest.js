@@ -11,7 +11,7 @@ const PsychologyTestModal = ({ onClose, userId, onEnd }) => {
     useEffect(() => {
         const fetchPsychologyTestData = async () => {
             try {
-                const response = await axios.get("http://10.187.1.40:5000/psychology");
+                const response = await axios.get("http://localhost:5000/psychology");
                 const testData = response.data.find((item) => item.test);
                 if (testData) {
                     setPsychTest(testData.test);
@@ -101,10 +101,10 @@ const PsychologyTestModal = ({ onClose, userId, onEnd }) => {
                 qualityCount: qualityCountObj,
             };
 
-            const userResponse = await axios.get(`http://10.187.1.40:5000/user/${userId}`);
+            const userResponse = await axios.get(`http://localhost:5000/user/${userId}`);
             const userData = userResponse.data;
 
-            await axios.put(`http://10.187.1.40:5000/user/${userId}`, {
+            await axios.put(`http://localhost:5000/user/${userId}`, {
                 ...userData,
                 personalityTests: [result],
             });

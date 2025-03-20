@@ -6,7 +6,7 @@ import QuestionForm from "../component/admin/questionForm";
 import EditOfferModal from "../component/admin/editOfferModal";
 import ResultModal from "../component/admin/resultModal";
 
-const API_URL = "http://10.187.1.40:5000/offers";
+const API_URL = "http://localhost:5000/offers";
 
 const Admin = () => {
     const [jobOffers, setJobOffers] = useState([]);

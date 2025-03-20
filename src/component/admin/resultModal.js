@@ -6,7 +6,7 @@ import { FaChevronDown, FaChevronUp, FaCode, FaBrain, FaComments } from "react-i
 const ResultModal = ({ offer, onClose }) => {
     const [candidates, setCandidates] = useState([]);
     const [expandedCandidates, setExpandedCandidates] = useState({});
-    const API_URL = "http://10.187.1.40:5000";
+    const API_URL = "http://localhost:5000";
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [psychologyResults, setPsychologyResults] = useState([]);

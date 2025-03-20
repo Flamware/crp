@@ -21,12 +21,12 @@ const Offer = ({ selectedUser }) => {
     const [isDeletingTechnical, setIsDeletingTechnical] = useState(false);
     const [isDeletingPsychology, setIsDeletingPsychology] = useState(false);
     const [isDeletingCommunication, setIsDeletingCommunication] = useState(false);
-    const API_URL = "http://10.187.1.40:5000/offers";
+    const API_URL = "http://localhost:5000/offers";
 
     useEffect(() => {
         const fetchUserCandidature = async () => {
             try {
-                const response = await axios.get(`http://10.187.1.40:5000/user/${selectedUser.id}`);
+                const response = await axios.get(`http://localhost:5000/user/${selectedUser.id}`);
                 const user = response.data;
 
                 // Fetch Technical Test Results
@@ -72,7 +72,7 @@ const Offer = ({ selectedUser }) => {
 
         setIsDeletingTechnical(true);
         try {
-            const response = await axios.get(`http://10.187.1.40:5000/user/${selectedUser.id}`);
+            const response = await axios.get(`http://localhost:5000/user/${selectedUser.id}`);
             const user = response.data;
 
             // Update the candidature by removing qualityCount
@@ -85,7 +85,7 @@ const Offer = ({ selectedUser }) => {
             });
 
             // Update user data in the backend
-            await axios.put(`http://10.187.1.40:5000/user/${selectedUser.id}`, {
+            await axios.put(`http://localhost:5000/user/${selectedUser.id}`, {
                 ...user,
                 candidature: updatedCandidature,
             });
@@ -107,11 +107,11 @@ const Offer = ({ selectedUser }) => {
 
         setIsDeletingPsychology(true);
         try {
-            const response = await axios.get(`http://10.187.1.40:5000/user/${selectedUser.id}`);
+            const response = await axios.get(`http://localhost:5000/user/${selectedUser.id}`);
             const user = response.data;
 
             // Remove personalityTests
-            await axios.put(`http://10.187.1.40:5000/user/${selectedUser.id}`, {
+            await axios.put(`http://localhost:5000/user/${selectedUser.id}`, {
                 ...user,
                 personalityTests: [], // Clear personality tests
             });
@@ -132,7 +132,7 @@ const Offer = ({ selectedUser }) => {
 
         setIsDeletingCommunication(true);
         try {
-            const response = await axios.get(`http://10.187.1.40:5000/user/${selectedUser.id}`);
+            const response = await axios.get(`http://localhost:5000/user/${selectedUser.id}`);
             const user = response.data;
 
             // Update the candidature by removing communication data
@@ -145,7 +145,7 @@ const Offer = ({ selectedUser }) => {
             });
 
             // Update user data in the backend
-            await axios.put(`http://10.187.1.40:5000/user/${selectedUser.id}`, {
+            await axios.put(`http://localhost:5000/user/${selectedUser.id}`, {
                 ...user,
                 candidature: updatedCandidature,
             });

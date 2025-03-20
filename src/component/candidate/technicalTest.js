@@ -12,7 +12,7 @@ const TechnicalTestModal = ({ offerId, onClose, userId, onEnd }) => {
     useEffect(() => {
         const fetchOffer = async () => {
             try {
-                const response = await axios.get(`http://10.187.1.40:5000/offers/${offerId}`);
+                const response = await axios.get(`http://localhost:5000/offers/${offerId}`);
                 const fetchedOffer = response.data;
                 setOffer(fetchedOffer);
 
@@ -88,7 +88,7 @@ const TechnicalTestModal = ({ offerId, onClose, userId, onEnd }) => {
             };
 
             // Fetch the current user data
-            const userResponse = await axios.get(`http://10.187.1.40:5000/user/${userId}`);
+            const userResponse = await axios.get(`http://localhost:5000/user/${userId}`);
             const userData = userResponse.data;
 
             // Check if result for this offer already exists
@@ -102,7 +102,7 @@ const TechnicalTestModal = ({ offerId, onClose, userId, onEnd }) => {
             }
 
             // Update user data on the server
-            await axios.put(`http://10.187.1.40:5000/user/${userId}`, {
+            await axios.put(`http://localhost:5000/user/${userId}`, {
                 ...userData,
                 candidature: updatedCandidature
             });

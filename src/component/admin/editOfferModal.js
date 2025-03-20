@@ -5,7 +5,7 @@ const EditOfferModal = ({ offer, onSave, onClose }) => {
     const [formData, setFormData] = useState({ situations: [] });
     const [loading, setLoading] = useState(true);
     const [newSituations, setNewSituations] = useState({});
-    const API_URL = "http://10.187.1.40:5000";
+    const API_URL = "http://localhost:5000";
 
     useEffect(() => {
         setLoading(true);

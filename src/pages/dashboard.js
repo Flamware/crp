@@ -3,7 +3,7 @@ import Header from '../component/header';
 import axios from "axios";
 const Dashboard = () => {
     const [jobOffers, setJobOffers] = useState([]);
-    const API_URL = "http://10.187.1.40:5000/offers";
+    const API_URL = "http://localhost:5000/offers";
 
     useEffect(() => {
         axios.get(API_URL)

@@ -29,7 +29,7 @@ const CommunicationTest = ({ offerId, userId, onClose, onEnd }) => {
     useEffect(() => {
         const fetchOfferData = async () => {
             try {
-                const response = await axios.get(`http://10.187.1.40:5000/offers/${offerId}`);
+                const response = await axios.get(`http://localhost:5000/offers/${offerId}`);
                 const offer = response.data;
                 setEmailData(offer.email || null);
                 setOfferTitle(offer.title || "Offre sans titre");
@@ -221,7 +221,7 @@ const CommunicationTest = ({ offerId, userId, onClose, onEnd }) => {
 
             const mediaBase64 = await blobToBase64(mediaBlob);
 
-            const userResponse = await axios.get(`http://10.187.1.40:5000/user/${userId}`);
+            const userResponse = await axios.get(`http://localhost:5000/user/${userId}`);
             const userData = userResponse.data;
 
             const updatedCandidature = userData.candidature.map((item) =>
@@ -251,7 +251,7 @@ const CommunicationTest = ({ offerId, userId, onClose, onEnd }) => {
                 });
             }
 
-            await axios.put(`http://10.187.1.40:5000/user/${userId}`, {
+            await axios.put(`http://localhost:5000/user/${userId}`, {
                 ...userData,
                 candidature: updatedCandidature,
             });

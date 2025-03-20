@@ -30,7 +30,7 @@
           "id": "S1742374026197",
           "title": "Conseil à la clientèle 📞 (Communication)",
           "statement": "Un client appelle pour comprendre un changement sur son contrat de prévoyance. Tu ne connais pas encore bien ce type de dossier et ton responsable est en réunion. Que fais-tu ?",
-          "pictureUrl": "http://10.187.1.40:8080/pic/1.jpeg",
+          "pictureUrl": "http://localhost:8080/pic/1.jpeg",
           "choices": [
             {
               "text": "Je reformule la question du client pour être sûr d’avoir bien compris, puis je lui explique que je vais me renseigner et le rappeler rapidement avec une réponse fiable.",
@@ -55,7 +55,7 @@
           "id": "S1742374177241",
           "title": "Gestion des ressources humaines 🏢 (Travail en équipe)",
           "statement": " Un collègue te demande de l'aide pour trier des dossiers de recrutement, mais tu as aussi une tâche administrative à finir rapidement pour ton responsable. Que fais-tu ?",
-          "pictureUrl": "http://10.187.1.40:8080/pic/2.jpeg",
+          "pictureUrl": "http://localhost:8080/pic/2.jpeg",
           "choices": [
             {
               "text": "Je lui explique ma situation et je vois avec lui comment je peux l’aider plus tard si besoin.",
@@ -84,7 +84,7 @@
           "id": "S1742388508959",
           "title": "Gestion de l’immobilier 🏠 (Autonomie)",
           "statement": "Un locataire appelle pour signaler une fuite d’eau importante dans son appartement. Ton responsable est injoignable et il faut agir rapidement. Que fais-tu ?",
-          "pictureUrl": "http://10.187.1.40:8080/pic/3.jpeg",
+          "pictureUrl": "http://localhost:8080/pic/3.jpeg",
           "choices": [
             {
               "text": "Je rassure le locataire, je lui pose des questions précises sur le problème et je lui explique les prochaines étapes.",
@@ -113,7 +113,7 @@
           "id": "S1742389044682",
           "title": "Investissements 💰 (Curiosité)",
           "statement": "Ton responsable te demande de collecter des données sur des investissements récents. Certaines informations sont complexes et tu ne comprends pas tout. Que fais-tu ?",
-          "pictureUrl": "http://10.187.1.40:8080/pic/4.jpeg",
+          "pictureUrl": "http://localhost:8080/pic/4.jpeg",
           "choices": [
             {
               "text": "J’explique à mon responsable ce que j’ai compris et je lui demande des précisions sur les points flous.",
@@ -142,7 +142,7 @@
           "id": "S1742390901981",
           "title": "Dossier personnel",
           "statement": "Dans le cadre de ta formation, tu dois réaliser un projet sur le secteur dans lequel tu as effectué ton apprentissage. Ce rapport doit détailler les spécificités du domaine,\n les missions effectuées et les enjeux du secteur. Cependant, certaines informations te manquent et tu n’es pas sûr(e) d’avoir une vision complète du sujet. Que fais-tu ?",
-          "pictureUrl": "http://10.187.1.40:8080/pic/5.jpeg",
+          "pictureUrl": "http://localhost:8080/pic/5.jpeg",
           "choices": [
             {
               "text": "Je demande à mon formateur des précisions sur les points que je ne maîtrise pas.",
@@ -167,7 +167,7 @@
           "id": "S1742391092997",
           "title": "Comptabilité 📊",
           "statement": "En vérifiant des factures, tu remarques une incohérence qui pourrait être une erreur comptable. Que fais-tu ?",
-          "pictureUrl": "http://10.187.1.40:8080/pic/6.jpeg",
+          "pictureUrl": "http://localhost:8080/pic/6.jpeg",
           "choices": [
             {
               "text": "J’informe mon responsable et j’explique clairement où se trouve l’erreur.",
@@ -196,7 +196,7 @@
           "id": "S1742391251804",
           "title": "Gestion de conflit",
           "statement": "Depuis quelques jours, tu ressens une tension avec un collègue après un malentendu sur une tâche partagée. L’ambiance devient pesante et tu sens que cela affecte ton travail. Que fais-tu ?",
-          "pictureUrl": "http://10.187.1.40:8080/pic/1.jpeg",
+          "pictureUrl": "http://localhost:8080/pic/1.jpeg",
           "choices": [
             {
               "text": "Je prends un moment pour discuter avec mon collègue calmement, lui demander comment il perçoit la situation et essayer de clarifier les choses.",

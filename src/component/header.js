@@ -96,7 +96,7 @@ const Header = ({ onUserSelect, user }) => {
     const [activeButton, setActiveButton] = useState('');
     const [users, setUsers] = useState([]);
     const [error, setError] = useState('');
-    const API_URL = 'http://10.187.1.40:5000/';
+    const API_URL = 'http://localhost:5000/';
     const location = useLocation();
 
     // Update active button based on current location
