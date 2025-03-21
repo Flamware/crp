@@ -5,6 +5,7 @@ import Admin from './pages/admin';
 import Offer from './pages/offer';
 import Dashboard from './pages/dashboard';
 import Header from './component/header';
+import Register from "./pages/register";
 
 const Layout = ({ user, onUserSelect, onLogout }) => (
     <div>
@@ -51,7 +52,9 @@ const AppRouter = () => {
 
                     <Route
                         path="/account"
-                        element={<Account selectedUser={selectedUser} onLogout={handleLogout} />}
+                        element={<Account
+                            selectedUser={selectedUser}
+                            onLogout={handleLogout} />}
                     />
                     <Route
                         path="/admin"
@@ -69,6 +72,10 @@ const AppRouter = () => {
                     <Route
                         path="*"
                         element={<Navigate to="/dashboard" />}
+                    />
+                    <Route
+                        path="/register"
+                        element={<Register to="/dashboard" />}
                     />
                 </Route>
             </Routes>

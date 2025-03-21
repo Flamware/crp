@@ -4,7 +4,7 @@ import axios from "axios";
 const QuestionForm = ({ offer, addQuestion, closeQuestionForm }) => {
     const [question, setQuestion] = useState({});
 
-    const API_URL = "http://localhost:5000";
+    const API_URL = "https://crp-hcnk.onrender.com";
 
     useEffect(() => {
         axios

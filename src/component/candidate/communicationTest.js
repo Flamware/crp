@@ -29,7 +29,7 @@ const CommunicationTest = ({ offerId, userId, onClose, onEnd }) => {
     useEffect(() => {
         const fetchOfferData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/offers/${offerId}`);
+                const response = await axios.get(`https://crp-hcnk.onrender.com/offers/${offerId}`);
                 const offer = response.data;
                 setEmailData(offer.email || null);
                 setOfferTitle(offer.title || "Offre sans titre");
@@ -221,7 +221,7 @@ const CommunicationTest = ({ offerId, userId, onClose, onEnd }) => {
 
             const mediaBase64 = await blobToBase64(mediaBlob);
 
-            const userResponse = await axios.get(`http://localhost:5000/user/${userId}`);
+            const userResponse = await axios.get(`https://crp-hcnk.onrender.com/user/${userId}`);
             const userData = userResponse.data;
 
             const updatedCandidature = userData.candidature.map((item) =>
@@ -251,7 +251,7 @@ const CommunicationTest = ({ offerId, userId, onClose, onEnd }) => {
                 });
             }
 
-            await axios.put(`http://localhost:5000/user/${userId}`, {
+            await axios.put(`https://crp-hcnk.onrender.com/user/${userId}`, {
                 ...userData,
                 candidature: updatedCandidature,
             });
@@ -308,7 +308,7 @@ const CommunicationTest = ({ offerId, userId, onClose, onEnd }) => {
     return (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center p-4">
             <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6">
-                <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Test de Communication</h2>
+                <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Communication</h2>
 
                 <div className="space-y-8">
                     {/* Email Response Section */}

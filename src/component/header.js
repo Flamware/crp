@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import axios from 'axios';
 
@@ -26,7 +26,7 @@ const JobOfferLink = ({ activeButton, setActiveButton }) => (
         <Link to="/dashboard" onClick={() => setActiveButton('dashboard')}>
       <span className={`inline-block ${activeButton === 'dashboard' ? 'border-b-4 border-primary pb-1' : ''}`}>
         <p className={`text-lg font-bold ${activeButton === 'dashboard' ? 'text-primary' : 'text-black'}`}>
-          Offres d’Emploi / Alternance
+          Offres de Stage / Apprentissage
         </p>
       </span>
         </Link>
@@ -66,6 +66,13 @@ const UserSection = ({ user, users, handleUserChange, activeButton, setActiveBut
                     )}
                 </select>
             </div>
+            <Link to="/create-profile" onClick={() => setActiveButton('create-profile')}>
+                <div className="flex items-center space-x-2">
+                    <p className={`font-bold ${activeButton === 'create-profile' ? 'text-primary' : 'text-black'}`}>
+                        Créer un Compte
+                    </p>
+                </div>
+            </Link>
             <Link to="/account" onClick={() => setActiveButton('account')}>
                 <div className="flex items-center space-x-2">
                     <FaUserCircle className="w-8 h-8 text-gray-600" />
@@ -78,19 +85,59 @@ const UserSection = ({ user, users, handleUserChange, activeButton, setActiveBut
     );
 };
 
-const AdminSection = ({ activeButton, setActiveButton }) => (
-    <Link to="/admin" onClick={() => setActiveButton('admin')}>
-    <span className={`inline-flex flex-col items-center ${activeButton === 'admin' ? 'border-b-4 border-primary pb-1' : ''}`}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-8 h-8 text-gray-600">
-        <path
-            fill="currentColor"
-            d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1 .7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4z"
-        />
-      </svg>
-      <p className={`font-bold ${activeButton === 'admin' ? 'text-primary' : 'text-black'}`}>Admin</p>
-    </span>
-    </Link>
-);
+const AdminSection = ({ activeButton, setActiveButton }) => {
+    const navigate = useNavigate();
+    const ADMIN_PASSWORD = "rtxurxcv01"; // Set your password here
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleAdminAccess = (e) => {
+        e.preventDefault(); // Prevent default Link navigation
+
+        // Check if the user has already authenticated for this session
+        const isAdminAuthenticated = localStorage.getItem('adminAuthenticated') === 'true';
+
+        if (isAdminAuthenticated) {
+            setActiveButton('admin');
+            navigate('/admin');
+            return;
+        }
+
+        // Prompt for password
+        const enteredPassword = prompt('Veuillez entrer le mot de passe pour accéder à la section Admin :');
+
+        if (enteredPassword === ADMIN_PASSWORD) {
+            // Password correct, set authentication flag and navigate
+            localStorage.setItem('adminAuthenticated', 'true');
+            setActiveButton('admin');
+            navigate('/admin');
+            setErrorMessage('');
+        } else {
+            // Password incorrect, show error message
+            setErrorMessage('Mot de passe incorrect. Accès refusé.');
+        }
+    };
+
+    return (
+        <div className="flex flex-col items-center">
+            <Link to="/admin" onClick={handleAdminAccess}>
+        <span className={`inline-flex flex-col items-center ${activeButton === 'admin' ? 'border-b-4 border-primary pb-1' : ''}`}>
+          <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="w-8 h-8 text-gray-600"
+              fill="currentColor"
+          >
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v2h-2V7zm0 4h2v6h-2v-6z" />
+          </svg>
+          <p className={`font-bold ${activeButton === 'admin' ? 'text-primary' : 'text-black'}`}>Admin</p>
+        </span>
+            </Link>
+            {errorMessage && (
+                <p className="text-red-500 text-sm mt-1">{errorMessage}</p>
+            )}
+        </div>
+    );
+};
 
 const Header = ({ onUserSelect, user }) => {
     const [activeButton, setActiveButton] = useState('');
@@ -105,6 +152,7 @@ const Header = ({ onUserSelect, user }) => {
         if (path.startsWith('/dashboard')) setActiveButton('dashboard');
         else if (path.startsWith('/admin')) setActiveButton('admin');
         else if (path.startsWith('/account')) setActiveButton('account');
+        else if (path.startsWith('/create-profile')) setActiveButton('create-profile');
         else setActiveButton('');
     }, [location]);
 

@@ -11,7 +11,7 @@ const PsychologyTestModal = ({ onClose, userId, onEnd }) => {
     useEffect(() => {
         const fetchPsychologyTestData = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/psychology");
+                const response = await axios.get("https://crp-hcnk.onrender.com/psychology");
                 const testData = response.data.find((item) => item.test);
                 if (testData) {
                     setPsychTest(testData.test);
@@ -101,10 +101,10 @@ const PsychologyTestModal = ({ onClose, userId, onEnd }) => {
                 qualityCount: qualityCountObj,
             };
 
-            const userResponse = await axios.get(`http://localhost:5000/user/${userId}`);
+            const userResponse = await axios.get(`https://crp-hcnk.onrender.com/user/${userId}`);
             const userData = userResponse.data;
 
-            await axios.put(`http://localhost:5000/user/${userId}`, {
+            await axios.put(`https://crp-hcnk.onrender.com/user/${userId}`, {
                 ...userData,
                 personalityTests: [result],
             });
@@ -125,7 +125,7 @@ const PsychologyTestModal = ({ onClose, userId, onEnd }) => {
                         onClick={onClose}
                         className="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition"
                     >
-                        Close
+                        Fermer
                     </button>
                 </div>
             </div>
@@ -191,7 +191,7 @@ const PsychologyTestModal = ({ onClose, userId, onEnd }) => {
                         onClick={onClose}
                         className="mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 font-semibold focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md"
                     >
-                        Close
+                        Fermer
                     </button>
                 </div>
             </div>
@@ -201,7 +201,7 @@ const PsychologyTestModal = ({ onClose, userId, onEnd }) => {
     return (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center p-4">
             <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6">
-                <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Personality Test</h2>
+                <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Ma Personnalité</h2>
                 <div className="space-y-8">
                     {dichotomies.map((dichotomy) => (
                         <div
@@ -252,13 +252,13 @@ const PsychologyTestModal = ({ onClose, userId, onEnd }) => {
                         onClick={onClose}
                         className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition font-semibold"
                     >
-                        Cancel
+                        Annuler
                     </button>
                     <button
                         onClick={handleSubmitResults}
                         className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold"
                     >
-                        Submit
+                        Soumettre
                     </button>
                 </div>
             </div>

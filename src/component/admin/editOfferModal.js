@@ -5,7 +5,7 @@ const EditOfferModal = ({ offer, onSave, onClose }) => {
     const [formData, setFormData] = useState({ situations: [] });
     const [loading, setLoading] = useState(true);
     const [newSituations, setNewSituations] = useState({});
-    const API_URL = "http://localhost:5000";
+    const API_URL = "https://crp-hcnk.onrender.com";
 
     useEffect(() => {
         setLoading(true);
@@ -134,7 +134,7 @@ const EditOfferModal = ({ offer, onSave, onClose }) => {
                             className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-500"
                             onClick={() => handleAddSituation()}
                         >
-                            Add Situation
+                            Ajouter une situation
                         </button>
                     </div>
                 ) : (
@@ -145,7 +145,7 @@ const EditOfferModal = ({ offer, onSave, onClose }) => {
                                 <p className="text-gray-600 mb-2">{situation.statement}</p>
 
                                 <div className="mb-4">
-                                    <h5 className="font-medium text-gray-700">Choices</h5>
+                                    <h5 className="font-medium text-gray-700">Choix</h5>
                                     {situation.choices.map((choice, choiceIndex) => (
                                         <div key={choiceIndex} className="flex gap-2 mb-2">
                                             <input
@@ -167,13 +167,13 @@ const EditOfferModal = ({ offer, onSave, onClose }) => {
                                         </div>
                                     ))}
                                     <button className="text-green-600 hover:underline text-sm" onClick={() => handleAddChoice(situation.id)}>
-                                        + Add Choice
+                                        + Ajouter choix
                                     </button>
                                 </div>
 
                                 {!situation.nextSituationId && (
                                     <div className="mt-4 p-4 border rounded bg-gray-100">
-                                        <h5 className="font-medium text-gray-700 mb-2">Add Next Situation</h5>
+                                        <h5 className="font-medium text-gray-700 mb-2">Ajouter une nouvelle situation</h5>
                                         <input
                                             type="text"
                                             name="title"
@@ -190,7 +190,7 @@ const EditOfferModal = ({ offer, onSave, onClose }) => {
                                             className="w-full p-2 mb-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
                                         />
                                         <button className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500" onClick={() => handleAddSituation(situation.id)}>
-                                            Add Situation
+                                            Ajouter une situation
                                         </button>
                                     </div>
                                 )}
@@ -201,10 +201,10 @@ const EditOfferModal = ({ offer, onSave, onClose }) => {
 
                 <div className="flex justify-end">
                     <button onClick={() => onSave(formData)} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">
-                        Save
+                        Sauvegarder
                     </button>
                     <button onClick={onClose} className="bg-gray-500 text-white px-4 py-2 rounded ml-2 hover:bg-gray-400">
-                        Close
+                        Fermer
                     </button>
                 </div>
             </div>

@@ -6,7 +6,7 @@ import { FaChevronDown, FaChevronUp, FaCode, FaBrain, FaComments } from "react-i
 const ResultModal = ({ offer, onClose }) => {
     const [candidates, setCandidates] = useState([]);
     const [expandedCandidates, setExpandedCandidates] = useState({});
-    const API_URL = "http://localhost:5000";
+    const API_URL = "https://crp-hcnk.onrender.com";
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [psychologyResults, setPsychologyResults] = useState([]);
@@ -190,12 +190,12 @@ const TestResults = ({
                          <div className="flex flex-col space-y-6">
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <TestChart
-            title="Test Technique"
+            title="Technique"
             qualityCount={technicalQualityCount}
             icon={<FaCode className="text-blue-500" />}
         />
         <TestChart
-            title="Test Psychologique"
+            title="Psychologique"
             qualityCount={psychoQualityCount}
             icon={<FaBrain className="text-purple-500" />
         }
@@ -203,7 +203,7 @@ const TestResults = ({
 
         {communicationResults && (
             <TestChart
-                title="Test de Communication"
+                title="Communication"
                 icon={<FaComments className="text-green-500" />}
                 content={
                     <div className="space-y-6">

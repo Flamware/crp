@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import {redirect, useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Account = ({ selectedUser, onLogout }) => {  // Fixed props destructuring
+const Account = ({ selectedUser, onLogout }) => {
     const [currentUser, setCurrentUser] = useState(selectedUser);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [deleteMessage, setDeleteMessage] = useState("");
     const navigate = useNavigate();
+    const API_URL = "http://10.187.1.40:5000/user";
 
     useEffect(() => {
         if (!selectedUser) {
@@ -19,6 +23,35 @@ const Account = ({ selectedUser, onLogout }) => {  // Fixed props destructuring
     const handleLogout = () => {
         onLogout();
         navigate('/');
+    };
+
+    const handleDeleteAccount = async () => {
+        if (!window.confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.")) {
+            return;
+        }
+
+        setIsDeleting(true);
+        setDeleteMessage("");
+
+        try {
+            // Make a DELETE request to the backend to remove the user
+            await axios.delete(`${API_URL}/${currentUser.id}`);
+
+            // Clear local storage and log out the user
+            localStorage.removeItem('selectedUser');
+            onLogout();
+
+            setDeleteMessage("Compte supprimé avec succès !");
+            // Redirect to the homepage after a short delay
+            setTimeout(() => {
+                navigate('/');
+            }, 1500);
+        } catch (error) {
+            console.error("Error deleting account:", error);
+            setDeleteMessage("Erreur lors de la suppression du compte. Veuillez réessayer.");
+        } finally {
+            setIsDeleting(false);
+        }
     };
 
     if (!currentUser) {
@@ -89,9 +122,9 @@ const Account = ({ selectedUser, onLogout }) => {  // Fixed props destructuring
                                     const factKey = Object.keys(fact)[0];
                                     return (
                                         <li key={idx}>
-                                            <span className="font-semibold">
-                                                {factKey.charAt(0).toUpperCase() + factKey.slice(1)}:
-                                            </span> {fact[factKey]}
+                      <span className="font-semibold">
+                        {factKey.charAt(0).toUpperCase() + factKey.slice(1)}:
+                      </span> {fact[factKey]}
                                         </li>
                                     );
                                 })
@@ -115,7 +148,27 @@ const Account = ({ selectedUser, onLogout }) => {  // Fixed props destructuring
                         >
                             Modifier Profil
                         </a>
+                        <button
+                            className={`bg-gray-500 text-white py-3 px-6 rounded-full hover:bg-gray-600 transition duration-200 font-semibold ${
+                                isDeleting ? "opacity-50 cursor-not-allowed" : ""
+                            }`}
+                            onClick={handleDeleteAccount}
+                            disabled={isDeleting}
+                        >
+                            {isDeleting ? "Suppression en cours..." : "Supprimer le Compte"}
+                        </button>
                     </div>
+
+                    {/* Delete Message */}
+                    {deleteMessage && (
+                        <p
+                            className={`mt-4 text-lg text-center ${
+                                deleteMessage.includes("Erreur") ? "text-red-500" : "text-green-500"
+                            }`}
+                        >
+                            {deleteMessage}
+                        </p>
+                    )}
                 </div>
             </div>
         </div>

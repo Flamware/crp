@@ -6,7 +6,7 @@ import QuestionForm from "../component/admin/questionForm";
 import EditOfferModal from "../component/admin/editOfferModal";
 import ResultModal from "../component/admin/resultModal";
 
-const API_URL = "http://localhost:5000/offers";
+const API_URL = "https://crp-hcnk.onrender.com/offers";
 
 const Admin = () => {
     const [jobOffers, setJobOffers] = useState([]);

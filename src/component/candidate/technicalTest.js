@@ -12,7 +12,7 @@ const TechnicalTestModal = ({ offerId, onClose, userId, onEnd }) => {
     useEffect(() => {
         const fetchOffer = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/offers/${offerId}`);
+                const response = await axios.get(`https://crp-hcnk.onrender.com/offers/${offerId}`);
                 const fetchedOffer = response.data;
                 setOffer(fetchedOffer);
 
@@ -88,7 +88,7 @@ const TechnicalTestModal = ({ offerId, onClose, userId, onEnd }) => {
             };
 
             // Fetch the current user data
-            const userResponse = await axios.get(`http://localhost:5000/user/${userId}`);
+            const userResponse = await axios.get(`https://crp-hcnk.onrender.com/user/${userId}`);
             const userData = userResponse.data;
 
             // Check if result for this offer already exists
@@ -102,7 +102,7 @@ const TechnicalTestModal = ({ offerId, onClose, userId, onEnd }) => {
             }
 
             // Update user data on the server
-            await axios.put(`http://localhost:5000/user/${userId}`, {
+            await axios.put(`https://crp-hcnk.onrender.com/user/${userId}`, {
                 ...userData,
                 candidature: updatedCandidature
             });
@@ -120,7 +120,7 @@ const TechnicalTestModal = ({ offerId, onClose, userId, onEnd }) => {
         return (
             <div className="absolute    w-full h-full bg-gray-800 bg-opacity-75 flex items-center justify-center overflow-y-auto">
                 <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-2xl w-full max-w-4xl text-center">
-                    <h2 className="text-2xl font-bold mb-4">Test Results</h2>
+                    <h2 className="text-2xl font-bold mb-4">Results</h2>
 
                     <QualityRadarChart qualityCount={qualityCount} />
 
@@ -135,7 +135,7 @@ const TechnicalTestModal = ({ offerId, onClose, userId, onEnd }) => {
                         onClick={onClose}
                         className="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 font-semibold"
                     >
-                        Close
+                        Fermer
                     </button>
                 </div>
             </div>
@@ -188,11 +188,11 @@ const TechnicalTestModal = ({ offerId, onClose, userId, onEnd }) => {
                         }`}
                         disabled={currentQuestionIndex === 0}
                     >
-                        Previous
+                        Retour
                     </button>
 
                     <button onClick={onClose} className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600">
-                        Close
+                        Fermer
                     </button>
 
                     <button
